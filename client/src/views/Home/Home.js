@@ -3,40 +3,56 @@ import "./Home.css";
 import { useEffect, useState } from "react";
 
 function Home() {
+    const [products, setProducts] = useState([]);
 
-    const [product, setProduct] = useState([])
+    const loadProducts = async () => {
+        const response = await axios.get('/website')
 
-const loadProduct = async()=>{
+        setProducts(response?.data?.data)
+        console.log(response?.data?.data)
+    }
 
-    const response = await axios.get('/website')
-    setProduct(response?.data?.data)
+    const deleteProduct=async(id)=>{
+        alert(id)
+    }
 
-}
-useEffect(()=>{
-    loadProduct();
-}, [])
+        useEffect(() => {
+            loadProducts();
+        }, [])
 
-    return (
-        <>
-            <div>
+        return (
+            <>
+                <h1>All Product</h1>
+                <div className="flex-card">
+                    {
+                        products?.map((productInfo, index) => {
+                            const { _id,name, description, price, productImage, brand } = productInfo;
+                            return (
+                                <div key={index} 
+                                className="card-product">
+                                    <img src={productImage} 
+                                   className="img-product"/>
+                                    
+                                    <h1>{name}</h1>
+                                    <p>{description}</p>
+                                    <p>{price}</p>                                   
+                                    <p>{brand}</p>
+                                   <a href={`/details/${id}`}target="_blank"
+                                   className="view button">View More</a>
 
-                {
-                    product.map((productInfo) => {
-                        const { name, description, price, imageURI,brand } = productInfo;
-                        return
-                        <div>
-                        <h1>{name}</h1>
-                        <p>{description}</p>
-                        <p>{price}</p>
-                        <img src={imageURI}/>
-                        <p>{brand}</p>
+                                   <button type="button" className="view button"
+                                   onClick={()=>{
+                                    deleteProduct(_id)
+                                    }}>
+                                    Delete</button>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </>
+        )
 
-                        </div>
-                    })
-                }
-            </div>
-        </>
-    )
+    }
 
-}
-export default Home
+    export default Home;

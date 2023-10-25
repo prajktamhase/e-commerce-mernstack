@@ -7,39 +7,31 @@ function AddProduct() {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [imageURI, setImageURI] = useState('')
+    const [productImage, setproductImage] = useState('')
     const [brand, setBrand] = useState('')
 
     const addProduct = async () => {
-        if (!name || !description || !price || !imageURI || !brand) {
+        if (!name || !description || !price || !productImage || !brand) {
             alert("All dields are required")
             return
         }
-
-
         const ProductData = {
             name,
             description,
             price,
-            imageURI,
+            productImage,
             brand
         }
-
-
         const response = await axios.post('/commerces', ProductData);
         alert(response.data.message)
 
         setName('')
         setDescription('')
         setPrice('')
-        setImageURI('')
+        setproductImage('')
         setBrand('')
-
-
     }
     return (<>
-
-
         <div className="producr-card">
             <h1 className="text"><b>Add Product</b></h1>
             <form>
@@ -70,15 +62,15 @@ function AddProduct() {
                 <br />
 
                 <input type="text"
-                    placeholder="ImageURI"
-                    className="form"
-                    value={imageURI}
+                    placeholder="productImage"
+                    className="form "
+                    value={productImage}
                     onChange={(e) => {
-                        setImageURI(e.target.value)
+                        setproductImage(e.target.value)
                     }} /><br />
 
                 <input type="text"
-                    placeholder="Brande"
+                    placeholder="Brand"
                     className="form"
                     value={brand}
                     onChange={(e) => {

@@ -6,6 +6,7 @@ import {
 import './index.css';
 import AddProduct from "./views/AddProduct/AddProduct"
 import Home from "./views/Home/Home"
+import UpdateProduct from './views/UpdateProduct/UpdateProduct';
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/addproduct",
     element: <AddProduct/>,
+  },
+  {
+    path: "/updateproduct/:_id",
+    element: <UpdateProduct/>,
   },
   {
     path: "/details/_id",

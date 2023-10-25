@@ -13,7 +13,10 @@ function Home() {
     }
 
     const deleteProduct=async(id)=>{
-        alert(id)
+     const response=await  axios.delete(`product/${id}`)
+     if(response?.data?.success){
+        loadProducts();
+     }
     }
 
         useEffect(() => {
@@ -45,6 +48,8 @@ function Home() {
                                     deleteProduct(_id)
                                     }}>
                                     Delete</button>
+                                    <a href={`/updateProduct/${id}`}target="_blank"
+                                   className="view button">Edit</a>
                                 </div>
                             )
                         })

@@ -5,14 +5,15 @@ import { useEffect, useState } from "react";
 
 function ProductDetails(){
     const[detail,setDetail]=useState({})
+
     const loadDetails=async()=>{
-        const response=await axios.get(`/website/${id}`)
+        const response=await axios.get(`/products/${_id}`)
         setDetail(response?.data?.data)
     }
 
     const {_id}=useParams()
     useEffect(()=>{
-        loadDetails
+        loadDetails();
     },[])
 
     return(

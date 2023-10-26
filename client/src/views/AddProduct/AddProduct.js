@@ -22,7 +22,7 @@ function AddProduct() {
             productImage,
             brand
         }
-        const response = await axios.post('/commerces', ProductData);
+        const response = await axios.post('/product', ProductData);
         alert(response.data.message)
 
         setName('')
@@ -33,14 +33,13 @@ function AddProduct() {
     }
     return (<>
         <div className="producr-card">
-            <h1 className="text"><b>Add Product</b></h1>
             <form>
                 <input type="text"
                     className="form"
                     placeholder="Name"
                     value={name}
                     onChange={(e) => {
-                        setName(e.target.value)
+                    setName(e.target.value)
                     }} /><br />
 
                 <input type="text"

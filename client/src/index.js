@@ -7,7 +7,7 @@ import './index.css';
 import AddProduct from "./views/AddProduct/AddProduct"
 import Home from "./views/Home/Home"
 import UpdateProduct from './views/UpdateProduct/UpdateProduct';
-
+import ProductDetails from "./views/Details/Details";
 
 const router = createBrowserRouter([
   {
@@ -23,13 +23,9 @@ const router = createBrowserRouter([
     element: <UpdateProduct/>,
   },
   {
-    path: "/details/_id",
+    path: "/details/:_id",
     element:<ProductDetails/>,
-  },
-  // {
-  //   path: "/",
-  //   element: <div>Hello world!</div>,
-  // },
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

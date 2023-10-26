@@ -6,58 +6,57 @@ function Home() {
     const [products, setProducts] = useState([]);
 
     const loadProducts = async () => {
-        const response = await axios.get('/website')
+        const response = await axios.get('/products')
 
         setProducts(response?.data?.data)
         console.log(response?.data?.data)
     }
-
-    const deleteProduct=async(id)=>{
-     const response=await  axios.delete(`product/${id}`)
-     if(response?.data?.success){
+    useEffect(() => {
         loadProducts();
-     }
-    }
+    }, [])
 
-        useEffect(() => {
+    const deleteProduct = async (_id) => {
+        const response = await axios.delete(`product/${_id}`)
+        if (response?.data?.success) {
             loadProducts();
-        }, [])
-
-        return (
-            <>
-                <h1>All Product</h1>
+        }
+    }
+    return (
+        <>
+            <div className="bg-color">
                 <div className="flex-card">
                     {
                         products?.map((productInfo, index) => {
-                            const { _id,name, description, price, productImage, brand } = productInfo;
+                            const { _id, name, description, price, productImage, brand } = productInfo;
                             return (
-                                <div key={index} 
-                                className="card-product">
-                                    <img src={productImage} 
-                                   className="img-product"/>
-                                    
-                                    <h1>{name}</h1>
-                                    <p>{description}</p>
-                                    <p>{price}</p>                                   
-                                    <p>{brand}</p>
-                                   <a href={`/details/${id}`}target="_blank"
-                                   className="view button">View More</a>
+                                <div key={index}
+                                    className="card-product">
+                                    <img src={productImage}
+                                        className="img-product" />
 
-                                   <button type="button" className="view button"
-                                   onClick={()=>{
-                                    deleteProduct(_id)
-                                    }}>
-                                    Delete</button>
-                                    <a href={`/updateProduct/${id}`}target="_blank"
-                                   className="view button">Edit</a>
+                                    <h1 className="center">{name}</h1>
+                                    <p className="center">{description}</p>
+                                    <p className="center">{price}</p>
+                                    <p className="center">{brand}</p>
+
+                                    <a href={`/details/${_id}`} target="_blank"
+                                        className="view-button">View More</a>
+
+                                    <button type="button"
+                                        className="delete-button-product"
+                                        onClick={() => {
+                                            deleteProduct(_id)
+                                        }}>
+                                        ❌</button>
+
+                                    <a href={`/updateproduct/${_id}`} target="_blank"
+                                        className="update-button-product">✏️</a>
                                 </div>
                             )
                         })
                     }
                 </div>
-            </>
-        )
-
-    }
-
-    export default Home;
+            </div>
+        </>
+    )}
+export default Home;

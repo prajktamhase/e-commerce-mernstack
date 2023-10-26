@@ -12,12 +12,47 @@
     flex-wrap: wrap;
 }
 .img-product{
-    height: 150px;
+    height: 190px;
+   
+    margin-left: 50px;
+     padding: 5px;
+    display: flex;
+    justify-content: center;
+    background: none;
+
+  
 }
-.view button{
+.view-button{
     padding: 5px;
-    margin: 10px;
+    margin: 5px;
     background-color: black;
     color: white;
     box-shadow: 0 2px 2px 0;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.update-button-product{
+
+    padding: 5px;
+    margin-left: 15px;
+ text-decoration: none;
+ border-radius: 50% ;
+ box-shadow: 1px 1px 1px 1px black;
+}
+.delete-button-product{
+    margin-left: 115px;
+    padding: 5px;
+ text-decoration: none;
+ border-radius: 50% ;
+ box-shadow: 1px 1px 1px 1px black;
+ border: none;
+}
+
+.center{
+    text-align: center;
+}
+.bg-color{
+    background-color: rgb(250, 239, 226);
+    margin: 0;
+    padding: 0;
 }
